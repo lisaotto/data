@@ -6,3 +6,33 @@
 	position: relative;
 }
 
+
+
+
+$grey: #3f4144;
+$lightgrey: #585b5e;
+$lightestgrey: #E0E2E0;
+$yellow: #dfc48c;
+$blue: #03adb0;
+$dblue: #009999;
+
+
+@font-face {
+    font-family: '3dumbregular';
+    src: url('../fonts/3dumb-webfont.eot');
+    src: url('../fonts/3dumb-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/3dumb-webfont.woff2') format('woff2'),
+         url('../fonts/3dumb-webfont.woff') format('woff'),
+         url('../fonts/3dumb-webfont.ttf') format('truetype'),
+         url('../fonts/3dumb-webfont.svg#3dumbregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+p {
+	font-family: '3dumbregular';
+	font-size: 100px;
+	color: $yellow;
+	margin-left: 20px;
+}
