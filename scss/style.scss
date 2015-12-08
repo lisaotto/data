@@ -118,6 +118,7 @@ h1 {
     font-size: 72px;
     float: left;
     margin: 0;
+
 }
 
 .description {
@@ -283,12 +284,13 @@ h1 {
         padding: 0 20vw; 
         width: 100%;
         font-family: 'cooper_hewittmedium';
-        font-size: 18px;
+        font-size: 20px;
         opacity: 1;
         color: $grey;
         position: relative;
         margin: 40vh auto 0 auto;
         text-align: center;
+        line-height: 150%;
 
     }
 }
