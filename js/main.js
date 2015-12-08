@@ -9,6 +9,7 @@
     
 
         var canvas = d3.select("body").append("svg")
+          .attr("class", "data")
           .attr("width", 1200)
           .attr("height", 400);
 //Adding Data Points
@@ -22,7 +23,7 @@
           .attr("stroke-miterlimit", 10)
           .attr("points", linesvg)
           .attr("transform", function(d){
-            var trs = (119 + d['Rate of A']*990/100)+ " 0"
+            var trs = (120 + d['Rate of A']*990/100)+ " 0"
             return "translate(" + trs +")";
           })
           .attr("stroke", function(d) {
@@ -40,7 +41,7 @@
           .attr("stroke-miterlimit", 10)
           .attr("points", linesvg)
           .attr("transform", function(d){
-            var trs = (119 + d['Rate B']*990/100)+ " 100"
+            var trs = (120 + d['Rate B']*990/100)+ " 100"
             return "translate(" + trs +")";
           })
      
@@ -59,7 +60,7 @@
           .attr("stroke-miterlimit", 10)
           .attr("points", linesvg)
           .attr("transform", function(d){
-            var trs = (119 + d['Rate of C']*990/100)+ " 200"
+            var trs = (120 + d['Rate of C']*990/100)+ " 200"
             return "translate(" + trs +")";
           })
           .attr("stroke", function(d) {
@@ -75,8 +76,8 @@
 
           .attr("y1", 40)
           .attr("y2", 100)
-          .attr("x1", function(d){return 120 + d['Rate of A']*990/100})
-          .attr("x2", function(d){return 120 + d['Rate B']*990/100})
+          .attr("x1", function(d){return 122 + d['Rate of A']*990/100})
+          .attr("x2", function(d){return 122 + d['Rate B']*990/100})
           .attr("stroke", function(d) {
             console.log(d.CATEGORY)
             return colors[d.CATEGORY];
@@ -89,8 +90,8 @@
 
           .attr("y1", 140)
           .attr("y2", 200)
-          .attr("x1", function(d){return 120 + d['Rate B']*990/100})
-          .attr("x2", function(d){return 120 + d['Rate of C']*990/100})
+          .attr("x1", function(d){return 122 + d['Rate B']*990/100})
+          .attr("x2", function(d){return 122 + d['Rate of C']*990/100})
           .attr("stroke", function(d) {
             console.log(d.CATEGORY)
             return colors[d.CATEGORY];

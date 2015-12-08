@@ -25,7 +25,7 @@
     </head>
 
     <body>
-    <header class="clearfix">
+    <main class="clearfix">
          <h1>The Violations That</br> Make Up the Grades</h1>
          <p class ="description">Using the NYC’s Open Data, we can explore the twenty most common violations in 2014 that make up the health grades at restaurants in New York City.</br><b>Select a line below to see more about an individual violation.</b></p>
          <div class="categories">
@@ -37,15 +37,16 @@
                 <li><img src="img/construction-highlight.svg"><span>4. Construction</span></li>
             </ul>
          </div>
-         <div class="labels">
-             <h3>Grade</h3>
-             <h3>Percent of Restaurants with the Violation</h3>
-        </div>
+        <div class="labels">
+                <h3 class="label-grade">Grade</h3>
+                <h3 class="label-percent">Percent of Restaurants with the Violation</h3>
+            </div>
+
          <div class="grade">
             <ul>
-                <li><h2>A</h2><p>18,480</br>restaurants</p></li>
-                <li><h2>B</h2><p>2,182</br>restaurants</p></li>
-                <li><h2>C</h2><p>379</br>restaurants</p></li>
+                <li><div></div><h2>A</h2><p>18,480</br>restaurants</p></li>
+                <li><div></div><h2>B</h2><p>2,182</br>restaurants</p></li>
+                <li><div></div><h2>C</h2><p>379</br>restaurants</p></li>
             </ul>
          </div>
         <div class="container">
@@ -56,13 +57,19 @@
             </ul>
          </div>
 
+   <script src="js/main.js"></script>   
        
-    </header>
+    </main>
+
+    <div class="toosmall">
+
+        <p>Please expand your window to 1400px or larger to view the data!</p>
+    </div>
 
 
 
 
-   <script src="js/main.js"></script>    
+ 
 
     </body>
 </html>
