@@ -90,11 +90,12 @@
 
 }
 
-$infestation: #b24041;
-$food: #717f34;
-$construction: #618d80;
-$sanitation: #d3a14a;
-$grey: #404041;
+$infestation: #aaaf3a;
+$food: #bf8a5a;
+$construction: #7c8c8b;
+$sanitation: #d6bf5b;
+$grey: #6d685c;
+$lgrey: #938c7f;
 
 h1, h2 {
     font-family: 'antonio', Helvetica, Arial, sans-serif;
@@ -114,26 +115,27 @@ main{
 }
 
 h1 {
-    width: 620px;
+    width: 600px;
     font-size: 72px;
     float: left;
     margin: 0;
+    color: $grey;
 
 }
 
 .description {
-    width: 240px;
-    font-size: 16px;
+    width: 600px;
+    font-size: 18px;
     float: left;
-    line-height: 156%;
+    line-height: 150%;
+    color: $grey;
 }
 
 .categories {
-    margin-top:16px;
-    width: 240px;
-    float: right;
-    height: 30px;
-    background: $grey;
+
+    img {
+        width: 115px;
+    }
 
         h2{
             font-size: 18px;
@@ -172,8 +174,10 @@ h1 {
     clear: both;
     padding-top: 40px;
     margin-bottom: -250px;
+
         h3{
             font-size: 13px;
+            color: $grey;
 
         }
 
@@ -207,6 +211,7 @@ h1 {
         top: 290px;
         width: 120px;
         padding: 0;
+        color: $grey;
 
 
 
@@ -214,7 +219,7 @@ h1 {
             height: 30px;
             margin-bottom: 70px;
             div{
-                border: 2px solid $grey;
+                border: 2px solid $lgrey;
                 height: 30px;
                 z-index:1;
     
@@ -228,7 +233,7 @@ h1 {
                 font-family: 'cooper_hewitt';
                 font-weight: bold;
                 text-align: center;
-                color: #e8d949;
+                color: $grey;
                 z-index:0;
             }
 
@@ -237,7 +242,7 @@ h1 {
                 padding: 0;
                 font-size: 10px;
                 text-align: center;
-                color: $grey;
+                color: $lgrey;
                 opacity: .75;
             }
 
@@ -256,7 +261,7 @@ h1 {
         left: 118px;
 
         li {
-            border: 2px solid $grey;
+            border: 2px solid $lgrey;
             height: 30px;
             margin-bottom: 70px;
 
