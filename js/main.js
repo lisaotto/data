@@ -79,7 +79,7 @@
           .attr("stroke", strikeColor)
           .attr("opacity", '0.5')
 
-      var lineBC = canvas.selectAll("line.BC")
+      var linesBC = canvas.selectAll("line.BC")
           .data(data)
           .enter()
           .append("line")
@@ -92,61 +92,85 @@
           .attr("opacity", '0.5')
 
 //Filling in strike w/ color & a bar on hover
-      function mouseover(d, siblings, group){
+      var elements = [strikesA, strikesB, strikesC, linesAB, linesBC]
+      function mouseover(d, group){
         var $this = d3.select(this),
             index = group[0].indexOf(this);
-          siblings.forEach(function(set){
+            var j = 0
+            var rates = ["Rate of A", "Rate B", "Rate of C"]
+          elements.forEach(function(set, groupIndex){
             set.forEach(function(strike){
               strike.forEach(function(actualStrike, i) {
                 if (i===index){
                   d3.select(actualStrike).attr("stroke", colors[d.CATEGORY]).attr("opacity", '1')
-                }  
+
+                  if (groupIndex < 3){
+                    var indicator = canvas.append('rect')
+                    .attr("x",120)
+                    .attr("height", 27)
+                    .attr("fill", colors[d.CATEGORY])
+                    .attr("opacity", '0.5')
+                    .attr("y", j + 6)
+                    .attr("width", function(){return 122 + d[rates[groupIndex]]*990/100 - 120} )
+
+                    j+=100;
+
+                   actualStrike.indicator = indicator;
+                  }
+                }  else {
+                   d3.select(actualStrike).attr("opacity", '.5')
+
+                }
               })
-              
             })
           });
-          $this.attr("stroke", colors[d.CATEGORY]).attr("opacity", '1')
         }
 
-        function mouseout(d, siblings, group){
+        function mouseout(d, group){
           var $this = d3.select(this),
             index = group[0].indexOf(this);
-          siblings.forEach(function(set){
+          elements.forEach(function(set){
             set.forEach(function(strike){
               strike.forEach(function(actualStrike, i) {
                 if (i===index){
                   d3.select(actualStrike).attr("stroke", strikeColor).attr("opacity", '0.75')
-                }  
+                  if(actualStrike.indicator){
+                      actualStrike.indicator.remove();
+                  }
+                }  else {
+                   d3.select(actualStrike).attr("opacity", '.75')
+                 }
               })
-              
             })
           });
-          $this.attr("stroke", strikeColor).attr("opacity", '0.75')
         }
 
       strikesA.on('mouseover', function(d){
-        mouseover.call(this, d, [strikesB, strikesC], strikesA);
+        mouseover.call(this, d, strikesA);
       });
 
       strikesA.on('mouseout', function(d){
-        mouseout.call(this, d, [strikesB, strikesC], strikesA)
+        mouseout.call(this, d, strikesA)
       })
 
       strikesB.on('mouseover', function(d){
-        mouseover.call(this, d, [strikesA, strikesC], strikesB);
+        mouseover.call(this, d, strikesB);
       });
 
       strikesB.on('mouseout', function(d){
-        mouseout.call(this, d, [strikesA, strikesC], strikesB)
+        mouseout.call(this, d, strikesB)
       })
 
      strikesC.on('mouseover', function(d){
-        mouseover.call(this, d, [strikesB, strikesA], strikesC);
+        mouseover.call(this, d, strikesC);
       });
 
       strikesC.on('mouseout', function(d){
-        mouseout.call(this, d, [strikesB, strikesA], strikesC)
+        mouseout.call(this, d, strikesC)
       })
+
+
+
 
 
 
