@@ -25,29 +25,53 @@
     </head>
 
     <body>
-    <main class="clearfix">
-         <h1>The Violations That</br> Make Up the Grades</h1>
-         <p class ="description">If you live in New York, you’re familiar with the health grades posted in 
-restaurant windows. But what does it really mean to have an ‘A’ or a ‘B’ or a ‘C’? You can explore the prevalence of the  twenty most common violations that make up the health grades at restaurants in New York City.</p>
-        <p class="description"><b>Select a line below to see more about an individual violation.</b></p>
-         <div class="categories">
-          <ul >
-                <li><img src="img/roach.png"><span>1. Infestation</span></li>
-                <li><img src="img/sponge.png"><span>2. Sanitation</span></li>
-                <li><img src="img/meat.png"><span>3. Food Prep</span></li>
-                <li><img src="img/rustnails.png"><span>4. Construction</span></li>
-            </ul>
-         </div>
-        <div class="labels">
-                <h3 class="label-grade">Grade</h3>
-                <h3 class="label-percent">Percent of Restaurants with the Violation</h3>
-            </div>
+    <header class="clearfix">
+        <div class="header">
 
+             <h1>The Violations That</br> Make Up the Grades</h1>
+             <p class ="description">If you live in New York, you’re familiar with the health grades posted in 
+    restaurant windows. But what does it really mean to have an ‘A’ or a ‘B’ or a ‘C’? You can explore the prevalence of the twenty most common violations that make up the health grades at restaurants in New York City.</p>
+            <p class="description instruction"><b>Select a line below to see more about an individual violation.</b></p>
+             <div class="categories">
+                  <ul >
+                    <li class="construction" data-category="Construction"><img src="img/rustnails.png"><span>Construction</span></li>
+                    <li class="infestation" data-category="Infestation"><img src="img/roach.png"><span>Infestation</span></li>
+                    <li class="food" data-category="Food"><img src="img/meat.png"><span>Food Prep</span></li>
+                    <li class="sanitation" data-category="Sanitation"><img src="img/sponge.png"><span>Sanitation</span></li>
+                 </ul>
+             </div>
+         </div>
+    </header>
+    <main class="clearfix">
+        <div class="labels">
+            <h3 class="label-grade">Grade</h3>
+            <h3 class="label-percent">Percent of Restaurants with the Violation</h3>
+            <div class="percents">
+                <p>1O%</p>
+                <p>2O%</p>
+                <p>3O%</p>
+                <p>4O%</p>
+                <p>5O%</p>
+                <p>6O%</p>
+                <p>7O%</p>
+                <p>8O%</p>
+                <p>9O%</p>
+                <p>10O%</p>
+   
+            </div>
+        </div>
+         <div class="">
+             <div class="marker1 markers"></div>
+             <div class="marker2 markers"></div>
+             <div class="marker3 markers"></div>
+             <div class="marker4 markers"></div>
+             <div class="marker5 markers"></div>
+        </div>
          <div class="grade">
             <ul>
-                <li><div></div><h2>A</h2><p>18,480</br>restaurants</p></li>
-                <li><div></div><h2>B</h2><p>2,182</br>restaurants</p></li>
-                <li><div></div><h2>C</h2><p>379</br>restaurants</p></li>
+                <li><div></div><img src="img/A.png"><p>18,480</br>restaurants</p></li>
+                <li><div></div><img src="img/B.png"><p>2,182</br>restaurants</p></li>
+                <li><div></div><img src="img/C.png"><p>379</br>restaurants</p></li>
             </ul>
          </div>
         <div class="container">
@@ -58,12 +82,23 @@ restaurant windows. But what does it really mean to have an ‘A’ or a ‘B’
             </ul>
          </div>
 
-   <script src="js/main.js"></script>   
-       
+        <div class="modal">
+            <h4 class="modal-category">Construction</h4>
+            <p class="modal-text">Non-food contact surface improperly constructed. Unacceptable material used. Non-food contact surface or equipment improperly maintained and/or not properly sealed, raised, spaced or movable to allow accessibility for cleaning on all sides, above and underneath the unit.</p>
+        </div>
+
     </main>
 
-    <div class="toosmall">
+    <footer>
+        <p class=>A project by <a href="http://lisaot.to" target="_blank">Lisa Otto</a> for CMU MDes Communication Design Studio. All data was gathered from <a href="https://nycopendata.socrata.com/" target="_blank">NYC OpenData</a>. Creative Commons images from <a href="" target="_blank">Hubertl</a>, <a href="" target="_blank">Dr. Bernd Gross</a>, and <a href="" target="_blank">Lionel Allorge</a>.</br> Special thanks to <a href="http://scottland.cc">Scott Donaldson</a> for his help with the D3 and JavaScript. </p>  
+    </footer>
 
+   <script src="js/main.js"></script> 
+
+
+
+
+    <div class="toosmall">
         <p>Please view this site on a desktop or expand your window to 1400 px or larger to view the data!</p>
     </div>
 

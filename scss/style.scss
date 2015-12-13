@@ -90,12 +90,12 @@
 
 }
 
-$infestation: #aaaf3a;
-$food: #bf8a5a;
-$construction: #7c8c8b;
-$sanitation: #d6bf5b;
+$infestation: #b2bc28;
+$food: #bc753b;
+$construction: #628985;
+$sanitation: #d1af1c;
 $grey: #6d685c;
-$lgrey: #938c7f;
+$lgrey: #c9c5bf;
 
 h1, h2 {
     font-family: 'antonio', Helvetica, Arial, sans-serif;
@@ -106,12 +106,24 @@ p, h3{
 }
 
 body{
-    width: 1200px;
+
     margin: 0 auto;
+    width: 100%;
+}
+
+header {
+    width: 100%;
+    background-color:#f3f3e8;
+}
+
+.header {
+    width: 1200px;
+    margin: 50px auto 100px auto;
 }
 
 main{
-    margin: 50px 0 100px 0;
+    width: 1200px;
+    margin: 50px auto 100px auto;
 }
 
 h1 {
@@ -131,37 +143,88 @@ h1 {
     color: $grey;
 }
 
+.instruction {
+    font-size: 16px;
+}
+
 .categories {
+    position: relative;
+    display: block;
+    float: left;
+    margin: 70px 0 25px 50px;
 
     img {
-        width: 115px;
-    }
+        position: absolute;
+     }
 
-        h2{
-            font-size: 18px;
-            color: #fff;
-            margin:0;
-            padding: 4px 0 0 6px;
-        }
 
     ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
-        li {
-            font-size: 14px;
-            border-bottom: 2px solid;
-            margin: 0;
-            padding: 7px 0 7px 10px;
+
+        .infestation{
+            color: $infestation;
 
             img {
-                position: absolute;
-                left:0;
+                width: 115px;
+                top: -60px;
+                left: -30px;
+                transform: rotate(30deg);
+             }
+
+
+        }
+
+        .construction{
+            color: $construction;
+
+            img {
+                width: 55px;
+                transform: rotate(-30deg);
+                top: -45px;
+             }
+
+        }
+
+        .food {
+            color: $food;
+            img {
+                width: 80px;
+                top: -35px;
+                left: -5px;
+             }
+        }
+
+        .sanitation {
+            color: $sanitation;
+            img {
+                width: 75px;
+                top: -40px;
+                left: -5px;
+             }
+        }
+
+        li {
+            width: 120px;
+            display: block;
+            float: left;
+            font-size: 12px;
+            font-family: 'cooper_hewitt';
+            font-weight: bold;
+            margin: 0;
+            padding: 7px 0 7px 10px;
+            //text-shadow: 1px 1px rgba(78,61,71,.5);
+
+            &.active {
+                border: 2px solid #000;
             }
+
+
 
             &:hover {
                 img{
-                    opacity: .5;
+                    opacity: .4;
 
                 }
             }
@@ -172,25 +235,24 @@ h1 {
 
 .labels {
     clear: both;
-    padding-top: 40px;
-    margin-bottom: -250px;
+    margin-bottom: -220px;
 
         h3{
             font-size: 13px;
             color: $grey;
+            margin-bottom:0;
 
         }
 
         h3.label-grade {
             width: 120px;
-            height: 30px;
+
             text-align: center;
             display:inline-block;
             float:left;
         }
         h3.label-percent {
             width: 1080px;
-            height: 30px;
             text-align: left;
             display:inline-block;
             float:right;
@@ -199,12 +261,39 @@ h1 {
     
 }
 
+.percents {
+    margin-left: 226px;
+    width: 1080px;
+    
+}
+
+.percents p {
+    display: inline-block;
+    float: left;
+    color: $grey;
+    font-size: 10px;
+    font-family: "cooper_hewitt";
+    width: 107px;
+    margin:0;
+    padding-top:10px;
+}
+
 .data {
-    margin-top: -105px;
+    margin-top: -74px;
+    left: 50%;
+    transform: translateX(-50%);
+
 }
 
 
 .grade{
+
+    img {
+        width: 70px;
+        margin-top:-55px;
+        margin-left: 25px;
+        z-index: 10;
+    }
     ul{
         list-style-type: none;
         position: absolute;
@@ -217,7 +306,7 @@ h1 {
 
         li {
             height: 30px;
-            margin-bottom: 70px;
+            margin-bottom: 90px;
             div{
                 border: 2px solid $lgrey;
                 height: 30px;
@@ -238,11 +327,11 @@ h1 {
             }
 
             p {
-                margin: -12px 0 0 0;
+                margin: 0;
                 padding: 0;
                 font-size: 10px;
                 text-align: center;
-                color: $lgrey;
+                color: $grey;
                 opacity: .75;
             }
 
@@ -263,7 +352,7 @@ h1 {
         li {
             border: 2px solid $lgrey;
             height: 30px;
-            margin-bottom: 70px;
+            margin-bottom: 90px;
 
         }
     }
@@ -275,9 +364,99 @@ h1 {
 }
 
 
+.markers {
+    background-color:#f3f3e8;
+    width: 108px;
+    height: 300px;
+    position: absolute;
+    top: 290px;
+
+}
+
+
+    .marker1 {
+        left: 228px;
+    }
+
+    .marker2 {
+        left: 444px;
+    }
+
+    .marker3 {
+        left: 660px;
+    }
+
+    .marker4 {
+        left: 876px;
+    }
+
+    .marker5 {
+        left: 1091px;
+    }
+
+.modal {
+    position: absolute;
+    width: 380px; 
+    left: 725px;
+    top: 50px;
+    z-index: 2000;
+    display: none;
+
+
+
+    .modal-category, .modal-text{
+        display: block;
+        border: 2px solid $lgrey;
+        background: #fff;
+    }
+
+    .modal-text {
+        padding: 20px 15px 15px 15px;
+        font-size: 12px;
+        color: $grey;
+        line-height: 150%;
+    }
+
+    .modal-category {
+        padding: 4px 8px;
+        width: 80px;
+        font-weight: normal;
+        font-size: 10px;
+        color: #fff;
+        text-align: center;
+        background-color: $construction;
+        margin: 0;
+        position: absolute;
+        z-index: 10;
+        left: 15px;
+    }
+    
+}
+
+footer {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1200px;
+    position: absolute;
+    top: 870px;
+    z-index: 10;
+
+        p{
+            
+            font-size: 12px;
+            color:$grey;
+            line-height: 180%;
+
+            a, a:visited{
+                color: $grey;
+            }
+        }
+
+}
+
 
 @media screen and (max-width: 1250px) {
-    main, .data {
+    main, .data, header, footer {
         display: none;
     }
 
@@ -299,5 +478,4 @@ h1 {
 
     }
 }
-
 

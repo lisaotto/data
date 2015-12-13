@@ -1,15 +1,11 @@
        var colors = {
-        "Sanitation" : "#d6bf5b",
-        "Food" : "#bf8a5a",
-        "Construction" : "#7c8c8b",
-        "Infestation" : "#aaaf3a"
+        "Sanitation" : "#d1af1c",
+        "Food" : "#bc753b",
+        "Construction" : "#628985",
+        "Infestation" : "#b2bc28"
        };
 
        var strikeColor = '#464c20'
-
-
-       var linesvg ="3.053,-0.223 2.789,0.49 2.408,1.202 2.436,1.913 2.51,2.624 2.475,3.333 2.19,4.043 3.115,4.753 3.105,5.462 2.421,6.172 2.876,6.882 2.773,7.593 2.283,8.303 2.559,9.015 2.234,9.727 3.078,10.441 2.313,11.156 2.201,11.871 2.975,12.584 2.619,13.298 2.699,14.01 2.157,14.723 3.109,15.435 2.223,16.147 2.869,16.86 2.559,17.574 2.896,18.289 2.931,19.005 2.317,19.72 2.441,20.434 2.721,21.148 2.944,21.861 2.85,22.576 2.615,23.291 2.862,24.008 2.295,24.723 3.088,25.438 2.838,26.154 2.529,26.863 2.538,27.574 2.89,28.287 2.848,29.002 3.078,29.719 2.244,30.434 2.844,31.148 2.256,31.863 2.816,32.582 2.571,33.299 2.49,34.018 2.869,34.736 2.312,35.455 2.695,36.172 2.421,36.889 2.432,37.609 2.581,38.33 2.39,39.053 2.938,39.777"
-    
 
 
         var canvas = d3.select("body").append("svg")
@@ -20,49 +16,42 @@
           var strikesA = canvas.selectAll("polyline.A")
           .data(data)
           .enter()
-          .append("polyline")
-
-          
-          .attr("stroke-width", 3)
-          .attr("stroke-miterlimit", 10)
-          .attr("points", linesvg)
+          .append("rect")
+          .attr("width", 4)
+          .attr("height", 40)
           .attr("transform", function(d){
             var trs = (120 + d['Rate of A']*990/100)+ " 0"
             return "translate(" + trs +")";
           })
-          .attr("stroke", strikeColor)
+          .attr("fill", strikeColor)
           .attr("opacity", '0.75')
 
 
           var strikesB = canvas.selectAll("polyline.B")
           .data(data)
           .enter()
-          .append("polyline")
-
-         .attr("stroke-width", 3)
-          .attr("stroke-miterlimit", 10)
-          .attr("points", linesvg)
+          .append("rect")
+         .attr("width", 4)
+          .attr("height", 40)
           .attr("transform", function(d){
-            var trs = (120 + d['Rate B']*990/100)+ " 100"
+            var trs = (120 + d['Rate B']*990/100)+ " 120"
             return "translate(" + trs +")";
           })
-          .attr("stroke", strikeColor)
+          .attr("fill", strikeColor)
           .attr("opacity", '0.75')
 
 
           var strikesC = canvas.selectAll("polyline.C")
           .data(data)
           .enter()
-          .append("polyline")
-
-          .attr("stroke-width", 3)
-          .attr("stroke-miterlimit", 10)
-          .attr("points", linesvg)
+          .append("rect")
+          .attr("width", 4)
+          .attr("height", 40)
           .attr("transform", function(d){
-            var trs = (120 + d['Rate of C']*990/100)+ " 200"
+            var trs = (120 + d['Rate of C']*990/100)+ " 240"
             return "translate(" + trs +")";
           })
-          .attr("stroke", strikeColor)
+          .attr("fill", strikeColor)
           .attr("opacity", '0.75')
 
 
@@ -73,10 +62,10 @@
           .append("line")
 
           .attr("y1", 40)
-          .attr("y2", 100)
+          .attr("y2", 122)
           .attr("x1", function(d){return 122 + d['Rate of A']*990/100})
-          .attr("x2", function(d){return 122 + d['Rate B']*990/100})
-          .attr("stroke", strikeColor)
+          .attr("x2", function(d){return 124 + d['Rate B']*990/100})
+          .attr("stroke", 'transparent')
           .attr("opacity", '0.5')
 
       var linesBC = canvas.selectAll("line.BC")
@@ -84,25 +73,28 @@
           .enter()
           .append("line")
 
-          .attr("y1", 140)
-          .attr("y2", 200)
-          .attr("x1", function(d){return 122 + d['Rate B']*990/100})
+          .attr("y1", 160)
+          .attr("y2", 242)
+          .attr("x1", function(d){return 124 + d['Rate B']*990/100})
           .attr("x2", function(d){return 122 + d['Rate of C']*990/100})
-          .attr("stroke", strikeColor)
+          .attr("stroke", 'transparent')
           .attr("opacity", '0.5')
 
 //Filling in strike w/ color & a bar on hover
       var elements = [strikesA, strikesB, strikesC, linesAB, linesBC]
+
       function mouseover(d, group){
         var $this = d3.select(this),
             index = group[0].indexOf(this);
+
             var j = 0
             var rates = ["Rate of A", "Rate B", "Rate of C"]
+        if (activeCategory.indexOf(d.CATEGORY)>-1 || activeCategory.length===0) {
           elements.forEach(function(set, groupIndex){
             set.forEach(function(strike){
               strike.forEach(function(actualStrike, i) {
                 if (i===index){
-                  d3.select(actualStrike).attr("stroke", colors[d.CATEGORY]).attr("opacity", '1')
+                  d3.select(actualStrike).attr("fill", colors[d.CATEGORY]).attr("opacity", '1')
 
                   if (groupIndex < 3){
                     var indicator = canvas.append('rect')
@@ -111,39 +103,75 @@
                     .attr("fill", colors[d.CATEGORY])
                     .attr("opacity", '0.5')
                     .attr("y", j + 6)
-                    .attr("width", function(){return 122 + d[rates[groupIndex]]*990/100 - 120} )
+                    .attr("width", function(){return 120 + d[rates[groupIndex]]*990/100 - 120} )
 
-                    j+=100;
+                    j+=120;
 
                    actualStrike.indicator = indicator;
+                  } else {
+                    var connector = actualStrike;
+                    d3.select(connector).attr('stroke', colors[d.CATEGORY])
+                    connector.isconnector = true;
                   }
-                }  else {
+                }  else if (activeCategory.length===0){
                    d3.select(actualStrike).attr("opacity", '.5')
 
                 }
               })
             })
           });
+       //MODALS!!!!!!
+
+          d3.select('.modal-category').text(d.CATEGORY).style({
+            'background-color': colors[d.CATEGORY]
+          });
+          d3.select('.modal-text').text(d.DESCRIPTION);
+          var x = +$this.attr('transform').split(' ')[0].replace('translate(', '') + 20
+          var y = +$this.attr('transform').split(' ')[1].replace(')', '') + 70
+          d3.select('.modal').style({
+            display: 'block',
+            left: x + 'px',
+            top: y + 'px',
+
+          })
+          console.log($this.attr('transform'))
+
         }
+      }
 
         function mouseout(d, group){
           var $this = d3.select(this),
             index = group[0].indexOf(this);
+
+
           elements.forEach(function(set){
             set.forEach(function(strike){
               strike.forEach(function(actualStrike, i) {
                 if (i===index){
-                  d3.select(actualStrike).attr("stroke", strikeColor).attr("opacity", '0.75')
+                  if (activeCategory.length===0){
+                  d3.select(actualStrike).attr("fill", strikeColor).attr("opacity", '0.75')
+                  }
                   if(actualStrike.indicator){
                       actualStrike.indicator.remove();
                   }
-                }  else {
+                  if(actualStrike.isconnector && activeCategory.length===0){
+                    d3.select(actualStrike).attr("stroke", 'transparent')
+                  }
+                }  else if (activeCategory.length===0) {
                    d3.select(actualStrike).attr("opacity", '.75')
                  }
               })
             })
           });
+
+
+          // get ride of modal 
+          d3.select('.modal').style({
+            display: 'none'
+          })
+
         }
+
 
       strikesA.on('mouseover', function(d){
         mouseover.call(this, d, strikesA);
@@ -169,9 +197,77 @@
         mouseout.call(this, d, strikesC)
       })
 
+///CATEGORY TOGGLES!!!!!
 
 
+var activeCategory=[];
 
+function showCategory(){
+  var $this = d3.select(this),
+    category = $this.attr('data-category')
+          elements.forEach(function(set, groupIndex){
+            set.forEach(function(strike){
+              strike.forEach(function(actualStrike, i) {
+                if (data[i].CATEGORY===category){
+                  d3.select(actualStrike).attr('fill', colors[category]).attr("opacity", '1')
+                }  else {
+                   d3.select(actualStrike).attr("opacity", '.5')
+                }
+              })
+          })
+  });
+}
+
+function reset(){
+
+  elements.forEach(function(set, groupIndex){
+  set.forEach(function(strike){
+    strike.forEach(function(actualStrike, i) {
+        d3.select(actualStrike).attr("opacity", '.75')
+        if (activeCategory.indexOf(data[i].CATEGORY)===-1){
+            d3.select(actualStrike).attr('fill', strikeColor).attr("opacity", '.5')
+        } else {
+          d3.select(actualStrike).attr("opacity", '1')
+        }
+    })
+  })
+});
+}
+
+d3.selectAll('.categories li').on('mouseover', showCategory)
+d3.selectAll('.categories li').on('mouseout', reset)
+
+function activateCategory(){
+  var hasClass = d3.select(this).classed('active')
+
+
+  var $this = d3.select(this),
+    category = $this.attr('data-category')
+      if (!hasClass) {
+        activeCategory.push(category)
+      } else {
+        activeCategory=activeCategory.filter(function(cat){
+          return cat !== category;
+        })
+      }
+          elements.forEach(function(set, groupIndex){
+            set.forEach(function(strike){
+              strike.forEach(function(actualStrike, i) {
+                if (data[i].CATEGORY===category && groupIndex>=3){
+
+                  d3.select(actualStrike).attr('stroke', !hasClass ? colors[category] : 'transparent')
+                }
+              })
+          })
+  });
+
+  d3.select(this).classed({
+    active:!hasClass
+  })
+
+}
+
+d3.selectAll('.categories li').on('click', activateCategory)
 
 
 /* FILL WITH COLOR OF MY CHOOSING 
