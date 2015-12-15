@@ -105,9 +105,20 @@
                     .attr("y", j + 6)
                     .attr("width", function(){return 120 + d[rates[groupIndex]]*990/100 - 120} )
 
+                    var percent = canvas.append('text')
+                      .attr("x", function(){return 120 + d[rates[groupIndex]]*990/100 -4} )
+                      .attr("y", j + 25)
+                      .html(Math.round(d[rates[groupIndex]]) + '%') 
+                      .classed({'bar-percents' : true})
+                      .attr("text-anchor", 'end')
+
                     j+=120;
 
                    actualStrike.indicator = indicator;
+
+                   actualStrike.percent = percent;
+
+
                   } else {
                     var connector = actualStrike;
                     d3.select(connector).attr('stroke', colors[d.CATEGORY])
@@ -153,6 +164,9 @@
                   }
                   if(actualStrike.indicator){
                       actualStrike.indicator.remove();
+                  }
+                  if(actualStrike.percent){
+                      actualStrike.percent.remove();
                   }
                   if(actualStrike.isconnector && activeCategory.length===0){
                     d3.select(actualStrike).attr("stroke", 'transparent')
@@ -225,7 +239,10 @@ function reset(){
     strike.forEach(function(actualStrike, i) {
         d3.select(actualStrike).attr("opacity", '.75')
         if (activeCategory.indexOf(data[i].CATEGORY)===-1){
-            d3.select(actualStrike).attr('fill', strikeColor).attr("opacity", '.5')
+            d3.select(actualStrike).attr('fill', strikeColor)
+            if(activeCategory.length>0) {
+              d3.select(actualStrike).attr("opacity", '.5')
+            }
         } else {
           d3.select(actualStrike).attr("opacity", '1')
         }
@@ -256,7 +273,12 @@ function activateCategory(){
                 if (data[i].CATEGORY===category && groupIndex>=3){
 
                   d3.select(actualStrike).attr('stroke', !hasClass ? colors[category] : 'transparent')
+
+                } else if((data[i].CATEGORY===category)) {
+                  $(actualStrike).appendTo('svg')
+
                 }
+
               })
           })
   });
@@ -267,8 +289,23 @@ function activateCategory(){
 
 }
 
+///Major RESET
+
+function majorReset(){
+  activeCategory = [];
+  $('.categories li').removeClass('active')
+  elements.forEach(function(set, groupIndex){
+  set.forEach(function(strike){
+    strike.forEach(function(actualStrike, i) {
+        d3.select(actualStrike).attr("opacity", '.75').attr('fill', strikeColor).attr('stroke', 'transparent')
+    })
+  })
+});
+}
+
 d3.selectAll('.categories li').on('click', activateCategory)
 
+d3.selectAll('.reset').on('click', majorReset)
 
 /* FILL WITH COLOR OF MY CHOOSING 
 
